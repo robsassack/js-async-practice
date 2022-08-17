@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Callback Example</title>
+</head>
+<body>
+
+</body>
+<script>
+  const userLeft = false;
+  const userWatchingContent = false;
+
+  function watchContent(callback, errorCallback) {
+    if (userLeft) {
+      errorCallback({
+        name: 'User Left',
+        message: 'Goodbye'
+      })
+    } else if(userWatchingContent) {
+      errorCallback({
+        name: 'User watching content',
+        message: 'This is the content'
+      })
+    } else {
+      callback('Content is good');
+    }
+  }
+
+  watchContent((message) => {
+    console.log('Success: ' + message);
+  }, (error) => {
+    console.log('Error: ' + error.message);
+  });
+</script>
+</html>
